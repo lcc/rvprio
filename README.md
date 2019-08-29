@@ -424,6 +424,6 @@ We found issues in [Property-db](https://github.com/runtimeverification/property
 
 | id | Specification              | GitHub URL                                                    | Status  |
 |----|----------------------------|---------------------------------------------------------------|---------|
-| 1  | SortedSet\_Comparable\.mop | https://github\.com/runtimeverification/property\-db/issues/7 | Pending |
-| 2  | TreeSet\_Comparable\.mop   | https://github\.com/runtimeverification/property\-db/issues/7 | Pending |
+| 1  | SortedSet\_Comparable\.mop | https://github.com/runtimeverification/property-db/issues/7 | Pending |
+| 2  | TreeSet\_Comparable\.mop   | https://github.com/runtimeverification/property-db/issues/7 | Pending |
 
