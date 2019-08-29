@@ -2,18 +2,19 @@
 
 ## Datasets
 
-- [Subjects](https://github.com/sallynathi/rvprio/blob/master/case-study/subjects.csv)
-- [Dataset without prioritization](https://github.com/sallynathi/rvprio/blob/master/case-study/dataset.csv)
-- [Dataset with prioritization](https://github.com/sallynathi/rvprio/blob/master/case-study/dataset_prioritized.csv)
-- [Dataset with hierarchical prioritization](https://github.com/sallynathi/rvprio/blob/master/case-study/dataset_prioritized_hrchy.csv)
-- [Results of manual inspection](https://github.com/sallynathi/rvprio/blob/master/case-study/manual_inspection.csv)
+- [Subjects](https://github.com/sallynathi/rvprio/blob/master/data/case-study/subjects.csv)
+- [Dataset without prioritization](https://github.com/sallynathi/rvprio/blob/master/data/case-study/dataset.csv)
+- [Dataset with prioritization](https://github.com/sallynathi/rvprio/blob/master/data/case-study/dataset_prioritized.csv)
+- [Dataset with hierarchical prioritization](https://github.com/sallynathi/rvprio/blob/master/data/case-study/dataset_prioritized_hrchy.csv)
+- [Results of manual inspection](https://github.com/sallynathi/rvprio/blob/master/data/case-study/manual_inspection.csv)
+- [Java files with violations](https://github.com/sallynathi/rvprio/blob/master/data/case-study/targets)
 
 ## Results
 
 The following table shows the inspections done on the subjects **with prioritization**.
-[CSV file for the following table](https://github.com/sallynathi/rvprio/blob/master/case-study/manual_inspection.csv)
+[CSV file for the following table](https://github.com/sallynathi/rvprio/blob/master/data/case-study/manual_inspection.csv).
 
-The violated files are stored in [targets](https://github.com/sallynathi/rvprio/tree/master/case-study/targets) directory.
+The violated files are stored in [targets](https://github.com/sallynathi/rvprio/tree/master/data/case-study/targets) directory.
 
 Conclusion Legend
 - TrueBug: Might potentially cause bug under some cases

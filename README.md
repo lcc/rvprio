@@ -2,15 +2,12 @@
 
 This repository provides the data for the paper entitled *Prioritizing Runtime Verification Violations*.
 
-In [datasets](https://github.com/sallynathi/rvprio/tree/master/datasets) directory we have the datasets used on our experiments.
-The [scripts](https://github.com/sallynathi/rvprio/tree/master/scripts) directory contains the scripts to run the classifiers and generate the prioritized dataset and the [Case Study](https://github.com/sallynathi/rvprio/tree/master/case-study/) directory contains the subjects, the manual inspection results and the target file of each violation.
-
+In [data](https://github.com/sallynathi/rvprio/tree/master/data) directory we have the datasets used on our experiments. The [scripts](https://github.com/sallynathi/rvprio/tree/master/scripts) directory contains the scripts to run the classifiers and generate the prioritized dataset.
 
 - [Subjects](https://github.com/sallynathi/rvprio/blob/master/README.md#subjects)
 - [Violations](https://github.com/sallynathi/rvprio/blob/master/README.md#violations)
 - [Manual Inspection Results](https://github.com/sallynathi/rvprio/blob/master/README.md#manual-inspection-results)
 - [Issues](https://github.com/sallynathi/rvprio/blob/master/README.md#issues)
-
 
 ## Subjects
 We selected following 11 projects from Apache projects.
@@ -30,7 +27,7 @@ We selected following 11 projects from Apache projects.
 | 11 |       apache.tika       |       https://github.com/apache/tika.git       | 86325105 |
 
 ## Violations
-The following table shows the violations obtained after run the tests with JavaMOP. [CSV file for the following table](https://github.com/sallynathi/rvprio/blob/master/case-study/dataset.csv)
+The following table shows the violations obtained after run the tests with JavaMOP. [CSV file for the following table](https://github.com/sallynathi/rvprio/blob/master/data/case-study/dataset.csv).
 
 > **Note: This table is not prioritized.**
 
@@ -318,9 +315,9 @@ The following table shows the violations obtained after run the tests with JavaM
 
 ## Manual Inspection Results
 The following table shows the inspections done on the subjects **with prioritization**.
-[CSV file for the following table](https://github.com/sallynathi/rvprio/blob/master/case-study/manual_inspection.csv)
+[CSV file for the following table](https://github.com/sallynathi/rvprio/blob/master/data/case-study/manual_inspection.csv).
 
-The violated files are stored in [targets](https://github.com/sallynathi/rvprio/tree/master/case-study/targets) directory.
+The violated files are stored in [targets](https://github.com/sallynathi/rvprio/tree/master/data/case-study/targets) directory. [See the Case Study readme for more informations](https://github.com/sallynathi/rvprio/tree/master/data/case-study/).
 
 Conclusion Legend
 - TrueBug: Might potentially cause bug under some cases
