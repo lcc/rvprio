@@ -5,6 +5,13 @@ This repository provides the data for the paper entitled *Prioritizing Runtime V
 In [datasets](https://github.com/sallynathi/rvprio/tree/master/datasets) directory we have the datasets used on our experiments.
 The [scripts](https://github.com/sallynathi/rvprio/tree/master/scripts) directory contains the scripts to run the classifiers and generate the prioritized dataset and the [Case Study](https://github.com/sallynathi/rvprio/tree/master/case-study/) directory contains the subjects, the manual inspection results and the target file of each violation.
 
+
+- [Subjects](https://github.com/sallynathi/rvprio/blob/master/README.md#subjects)
+- [Violations](https://github.com/sallynathi/rvprio/blob/master/README.md#violations)
+- [Manual Inspection Results](https://github.com/sallynathi/rvprio/blob/master/README.md#manual-inspection-results)
+- [Issues](https://github.com/sallynathi/rvprio/blob/master/README.md#issues)
+
+
 ## Subjects
 We selected following 11 projects from Apache projects.
 
@@ -313,13 +320,11 @@ The following table shows the inspections done on the subjects **with prioritiza
 
 The violated files are stored in [targets](https://github.com/sallynathi/rvprio/tree/master/case-study/targets) directory.
 
-```
 Conclusion Legend
-TrueBug: Might potentially cause bug under some cases
-FalseAlarm: Will never introduce any substantial problem
-Unknown: Should be discussed later
-Undefined: Cannot find source code, library or property description
-```
+- TrueBug: Might potentially cause bug under some cases
+- FalseAlarm: Will never introduce any substantial problem
+- Unknown: Should be discussed later
+- Undefined: Cannot find source code, library or property description
 
 | \#  | id  | Project Name              | SHA      | Filename:Line number                                                                                            | Specification                              | Severity   | Conclusion |
 |-----|-----|---------------------------|----------|-----------------------------------------------------------------------------------------------------------------|--------------------------------------------|------------|------------|
@@ -413,3 +418,12 @@ Undefined: Cannot find source code, library or property description
 | 88  | 188 | apache\.activemq\-artemis | e2d6d072 | org\.apache\.activemq\.artemis\.selector\.strict\.SimpleCharStream\.java:131                                    | Reader\_ManipulateAfterClose               | error      | TrueBug    |
 | 89  | 250 | apache\.struts            | 570f8c3e | freemarker\.core\.SimpleCharStream\.java:116                                                                    | Reader\_ManipulateAfterClose               | error      | TrueBug    |
 | 90  | 136 | apache\.pdfbox            | 4c6428d7 | org\.apache\.pdfbox\.pdmodel\.graphics\.image\.SampledImageReader\.java:128                                     | Closeable\_MeaninglessClose                | suggestion | FalseAlarm |
+
+## Issues
+We found issues in [Property-db](https://github.com/runtimeverification/property-db) itself which we reported to the developers.
+
+| id | Specification              | GitHub URL                                                    | Status  |
+|----|----------------------------|---------------------------------------------------------------|---------|
+| 1  | SortedSet\_Comparable\.mop | https://github\.com/runtimeverification/property\-db/issues/7 | Pending |
+| 2  | TreeSet\_Comparable\.mop   | https://github\.com/runtimeverification/property\-db/issues/7 | Pending |
+
