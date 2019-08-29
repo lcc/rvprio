@@ -1,7 +1,7 @@
 # Datasets
 
 ## Features Selection
-The following table shows the importance of each features for our classifiers. [CSV file for the following table](https://github.com/sallynathi/rvprio/blob/master/datasets/features_selected.csv).
+The following table shows the importance of each features for our classifiers. [CSV file for the following table](https://github.com/sallynathi/rvprio/blob/master/data/features_selected.csv).
 
 | Feature                                              | Importance            |
 |------------------------------------------------------|-----------------------|
@@ -55,5 +55,5 @@ The following table shows the importance of each features for our classifiers. [
 
 ## Training phase
 This dataset was used for training the classifiers to generate the model. The table contains **112 columns** and **1170 inputs**.
-[CSV file for the Training dataset](https://github.com/sallynathi/rvprio/blob/master/datasets/training.csv).
+[CSV file for the Training dataset](https://github.com/sallynathi/rvprio/blob/master/data/training.csv).
 
