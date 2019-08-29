@@ -1,0 +1,12 @@
+#,Project Name,Github URLs,SHA
+1,apache.activemq-artemis,https://github.com/apache/activemq-artemis.git,e2d6d072
+2,apache.ambari,https://github.com/apache/ambari.git,b0596110
+3,apache.hive,https://github.com/apache/hive.git,333264b2
+4,apache.juneau,https://github.com/apache/juneau.git,0e0c0a0a
+5,apache.pdfbox,https://github.com/apache/pdfbox.git,4c6428d7
+6,apache.ranger,https://github.com/apache/ranger.git,f80ee0e7
+7,apache.santuario-java,https://github.com/apache/santuario-java.git,3f4f5f40
+8,apache.shiro,https://github.com/apache/shiro.git,010e4567
+9,apache.stanbol,https://github.com/apache/stanbol.git,2fcf471b
+10,apache.struts,https://github.com/apache/struts.git,570f8c3e
+11,apache.tika,https://github.com/apache/tika.git,86325105
