@@ -30,7 +30,9 @@ We selected following 11 projects from Apache projects.
 | 11 |       apache.tika       |       https://github.com/apache/tika.git       | 86325105 |
 
 ## Violations
-The following table shows the violations obtained after run the tests with JavaMOP. **Note: This dataset is not prioritized.**
+The following table shows the violations obtained after run the tests with JavaMOP. [CSV file for the following table](https://github.com/sallynathi/rvprio/blob/master/case-study/dataset.csv)
+
+> **Note: This table is not prioritized.**
 
 | id  | Project                   | SHA      | Filename                                   | Line Number | Specification                              | Filepath                                                                                                    |
 |-----|---------------------------|----------|--------------------------------------------|-------------|--------------------------------------------|-------------------------------------------------------------------------------------------------------------|
