@@ -5,7 +5,6 @@
 - [Subjects](https://github.com/sallynathi/rvprio/blob/master/data/case-study/subjects.csv)
 - [Dataset without prioritization](https://github.com/sallynathi/rvprio/blob/master/data/case-study/dataset.csv)
 - [Dataset with prioritization](https://github.com/sallynathi/rvprio/blob/master/data/case-study/dataset_prioritized.csv)
-- [Dataset with hierarchical prioritization](https://github.com/sallynathi/rvprio/blob/master/data/case-study/dataset_prioritized_hrchy.csv)
 - [Results of manual inspection](https://github.com/sallynathi/rvprio/blob/master/data/case-study/manual_inspection.csv)
 - [Java files with violations](https://github.com/sallynathi/rvprio/blob/master/data/case-study/targets)
 
