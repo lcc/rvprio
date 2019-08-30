@@ -2,7 +2,7 @@
 
 This repository provides the data for the paper entitled *Prioritizing Runtime Verification Violations*.
 
-In [data](https://github.com/sallynathi/rvprio/tree/master/data) directory we have the datasets used on our experiments. The [scripts](https://github.com/sallynathi/rvprio/tree/master/scripts) directory contains the scripts to run the classifiers and generate the prioritized dataset.
+The [data](https://github.com/sallynathi/rvprio/tree/master/data) directory contains the datasets used in our experiments.
 
 - [Subjects](https://github.com/sallynathi/rvprio/blob/master/README.md#subjects)
 - [Violations](https://github.com/sallynathi/rvprio/blob/master/README.md#violations)
