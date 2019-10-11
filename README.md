@@ -2,6 +2,39 @@
 
 This repository provides the data for the paper entitled *Prioritizing Runtime Verification Violations*.
 
+Replication Package
+---------------
+In order to replicate the experiment follow these steps:
+
+### Getting started
+
+1. Clone the repository 
+   - `git clone https://github.com/sallynathi/rvprio.git`
+ 
+2. Install the additional python packages required:
+   - `pip install -r requirements.txt`
+
+### Evaluate the effectiveness of RVPrio with different classification algorithms
+
+1. Execute the `cross_validation.py` script 
+   - `python code/cross_validation.py`
+   
+    Different classification algorithms can be selected by changing the value of `clf_name`. The possible values are:
+    * GradientBoostingClassifier
+    * RandomForest
+    * LogisticRegression
+    * NearestNeighbors
+    * DecisionTree
+    * LinearSVM
+    * NeuralNet
+    * NaiveBayes
+    * AdaBoost
+    * GaussianProcess    
+
+2. View output results stored in folder `results/`
+
+Input Data
+---------------
 The [data](https://github.com/sallynathi/rvprio/tree/master/data) directory contains the datasets used in our experiments.
 
 - [Subjects](https://github.com/sallynathi/rvprio/blob/master/README.md#subjects)
