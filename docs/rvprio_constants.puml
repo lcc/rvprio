@@ -16,10 +16,15 @@
 !$FilesystemTech = "python"
 !$FilesystemDef = "Handles filesystem operation such as searching/copying files."
 
+!$PluginLabel = "Plugins (e.g. lizard, PMD)"
+!$PluginTech = "python"
+!$PluginDef = "Plugins that add information to each violation such as cyclomatic complexity, code_smells an etc."
+
 !$UserToCli = "Uses"
 !$CliToValidator = "Uses"
 !$CliToKernel = "Passes the input file for the kernel."
 !$CliToFilesystem = "Passes violatios to be copied/searched for."
+!$CliToPlugin = "Passes the found violations to each plugin so that each plugin adds columns to it."
 
 !$InternalCall = "Calls"
 
