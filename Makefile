@@ -6,6 +6,7 @@ REQUIREMENTS := -r requirements.txt
 BIN := $(VENV)/bin
 PIP := $(BIN)/pip
 PYTHON := $(BIN)/python
+PYLINT := $(BIN)/pylint
 PRE_COMMIT := $(BIN)/pre-commit
 
 bootstrap: venv \
@@ -20,6 +21,9 @@ requirements:
 
 commit-hooks:
 	$(PRE_COMMIT) install
+
+lint:
+	$(PYLINT) --verbose $(PYMODULE)
 
 clean:
 	@find . -type d -name '__pycache__' -exec rm -rf {} +
