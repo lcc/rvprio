@@ -1,0 +1,18 @@
+@startuml
+
+!$UserLabel = "User"
+!$UserDesc = "Developer that uses rvprio."
+
+!$MopLabel= "JavaMOP"
+!$MopDesc = "Monitoring oriented programming framework."
+
+!$RvprioLabel = "rvprio"
+!$RvprioDesc = "Prioritizes M.O.P. violations."
+
+!$UserToRvprioTech = "CLI"
+!$UserToRvprio = "Requests priorization of MOP systems."
+
+!$RvprioToMop = "Requests violations from."
+!$RvprioToMopTech = "python"
+
+@enduml

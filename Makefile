@@ -9,6 +9,9 @@ PYTHON := $(BIN)/python
 PYLINT := $(BIN)/pylint
 PRE_COMMIT := $(BIN)/pre-commit
 
+PLANTUML_JAR_URL = https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
+PLANTUML = plantuml.jar
+
 bootstrap: venv \
 	requirements \
 	commit-hooks
@@ -30,6 +33,15 @@ commit-msg:
 
 lint:
 	$(PYLINT) --verbose $(PYMODULE)
+
+.PHONY: docs
+docs: $(PLANTUML)
+	java -jar $(PLANTUML) docs/systemcontext.puml
+	java -jar $(PLANTUML) docs/rvprio.puml
+
+.PHONY: plantuml
+$(PLANTUML):
+	wget $(PLANTUML_JAR_URL) -O $(PLANTUML)
 
 clean:
 	@find . -type d -name '__pycache__' -exec rm -rf {} +

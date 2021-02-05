@@ -1,6 +1,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/emacs,visualstudiocode,vim,python,jupyternotebooks,windows,linux,macos,certificates
 # Edit at https://www.toptal.com/developers/gitignore?templates=emacs,visualstudiocode,vim,python,jupyternotebooks,windows,linux,macos,certificates
 
+docs/*.png
+plantuml.jar
+
 ### certificates ###
 *.pem
 *.key

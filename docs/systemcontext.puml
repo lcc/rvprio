@@ -1,0 +1,28 @@
+@startuml
+!include  C4_Context.puml
+!include  C4_Container.puml
+!include  C4_Component.puml
+!include constants.puml
+
+!procedure LAYOUT_WITH_LEGEND()
+hide stereotype
+legend right
+|<color:$LEGEND_TITLE_COLOR>**Legend**</color> |
+|<$SYSTEM_BG_COLOR> system |
+|<$PERSON_BG_COLOR> person |
+|<$EXTERNAL_SYSTEM_BG_COLOR> external system |
+endlegend
+!endprocedure
+
+LAYOUT_WITH_LEGEND()
+
+title rvprio
+
+Person(User, $UserLabel, $UserDesc)
+System_Ext(Mop, $MopLabel, $MopDesc)
+System(Rvprio, $RvprioLabel, $RvprioDesc)
+
+Rel(User, Rvprio, $UserToRvprio, $UserToRvprioTech)
+Rel(Rvprio, Mop, $RvprioToMop, $RvprioToMopTech)
+
+@enduml
