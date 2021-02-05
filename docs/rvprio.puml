@@ -1,0 +1,27 @@
+@startuml
+!include  C4_Context.puml
+!include  C4_Container.puml
+!include  C4_Component.puml
+!include constants.puml
+!include rvprio_constants.puml
+
+!procedure LAYOUT_WITH_LEGEND()
+hide stereotype
+legend right
+|<color:$LEGEND_TITLE_COLOR>**Legend**</color> |
+|<$CONTAINER_BG_COLOR> container |
+|<$PERSON_BG_COLOR> person |
+endlegend
+!endprocedure
+
+LAYOUT_WITH_LEGEND()
+
+Person(User, $UserLabel, $UserDesc)
+
+System_Boundary(Rvprio, $RvprioLabel) {
+	Container(Cli, $CliLabel, $CliTech, $CliDef)
+}
+
+Rel(User, Cli, $UserToCli, $InternalCall)
+
+@enduml
