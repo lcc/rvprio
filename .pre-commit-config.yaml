@@ -22,3 +22,20 @@ repos:
         entry: ./venv/bin/pylint
         language: python
         types: [python]
+
+-   repo: https://github.com/timothycrosley/isort
+    rev: 5.7.0
+    hooks:
+      - id: isort
+        args:
+        - --profile=black
+        - --multi-line=3
+        - --trailing-comma
+        - --force-grid-wrap=2
+        - --use-parentheses
+        - --ensure-newline-before-comments
+        - --line-length=88
+        - --filter-files
+        - --lines-after-imports=2
+        - --lines-between-types=1
+        - --project=rvprio
