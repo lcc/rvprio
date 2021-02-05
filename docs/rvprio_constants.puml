@@ -4,7 +4,12 @@
 !$CliTech = "Docopt"
 !$CliDef = "Command line utility that teaches the user how to use the system and parses user input."
 
+!$ValidatorLabel = "Validator"
+!$ValidatorTech = "Cerberus"
+!$ValidatorDef = "Validates that the commands that where passed to the CLI respect their schema."
+
 !$UserToCli = "Uses"
+!$CliToValidator = "Uses"
 
 !$InternalCall = "Calls"
 

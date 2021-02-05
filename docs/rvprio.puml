@@ -20,8 +20,10 @@ Person(User, $UserLabel, $UserDesc)
 
 System_Boundary(Rvprio, $RvprioLabel) {
 	Container(Cli, $CliLabel, $CliTech, $CliDef)
+	Container(Validator, $ValidatorLabel, $ValidatorTech, $ValidatorDef)
 }
 
 Rel(User, Cli, $UserToCli, $InternalCall)
+Rel(Cli, Validator, $CliToValidator, $InternalCall)
 
 @enduml
