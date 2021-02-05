@@ -12,7 +12,11 @@ import docopt
 import rvprio.filesystem
 import rvprio.kernels.javamop
 import rvprio.plugins.method_analyzer
+import rvprio.plugins.pmd
 import rvprio.validator
+
+
+RVPRIO_CACHE_FOLDER = ".rvprio"
 
 
 def main(kernel, input, **kwargs):
@@ -20,8 +24,17 @@ def main(kernel, input, **kwargs):
     kernel = rvprio.kernels.javamop.JavaMOP(input_file=input)
     violations = kernel.get_violations()
 
-    filesystem = rvprio.filesystem.Filesystem(violations)
+    filesystem = rvprio.filesystem.Filesystem(violations, RVPRIO_CACHE_FOLDER)
+    filesystem.create_cache_dir()
     found_violations = filesystem.find_sources()
+
+    file_paths = [
+        str(filesystem.find_file(subpath=violation.file_name)[0])
+        for violation in found_violations
+    ]
+
+    pmd = rvprio.plugins.pmd.PMDPlugin(file_paths, "pmd-out.csv", RVPRIO_CACHE_FOLDER)
+    pmd.run()
 
     final_violations = list()
     for violation in found_violations:
@@ -35,6 +48,10 @@ def main(kernel, input, **kwargs):
 
         if metadata:
             final_violation.add_plugin_info(metadata)
+            pmd_violation = pmd.get_range_analysis(
+                path, metadata.start_line, metadata._end_line
+            )
+            final_violation.add_plugin_info(pmd_violation)
             final_violations.append(final_violation)
 
 

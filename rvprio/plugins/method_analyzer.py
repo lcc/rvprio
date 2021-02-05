@@ -17,6 +17,14 @@ class MethodMetadata:
         self._param = param
         self._mname = mname
 
+    @property
+    def start_line(self):
+        return self._start_line
+
+    @property
+    def end_line(self):
+        return self._end_line
+
     def to_dict(self):
         return {
             "StartLine": self._start_line,

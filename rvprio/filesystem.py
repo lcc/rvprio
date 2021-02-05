@@ -5,12 +5,13 @@ import pathlib
 
 
 class Filesystem:
-    def __init__(self, violations, dst=None):
+    def __init__(self, violations, cache_dir, dst=None):
         super().__init__()
 
         self._dir = os.getcwd()
         self._violations = violations
         self._dst = dst
+        self._cache_dir = cache_dir
 
         self._found_sources = set()
         self._too_many_sources = set()
@@ -61,6 +62,9 @@ class Filesystem:
         self._sources_path_cache[subpath] = source_files
 
         return source_files
+
+    def create_cache_dir(self):
+        pathlib.Path(".rvprio").mkdir(parents=True, exist_ok=True)
 
     def _copy_source(src, dst):
         dst = os.path.join(SOURCES_DST, dst)

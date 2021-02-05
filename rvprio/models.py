@@ -1,4 +1,5 @@
 """ Base models for whole application """
+import collections.abc
 
 
 class RVprioViolation:
@@ -13,6 +14,10 @@ class RVprioViolation:
         kernel_dict = self._kernel_violation.to_dict()
         plugin_dict = {}
         for plugin in self._plugin_violations:
-            plugin_dict = {**plugin_dict, **plugin.to_dict()}
+            if isinstance(plugin, collections.abc.Iterable):
+                for plugin_values in plugin:
+                    plugin_dict = {**plugin_dict, **plugin_values.to_dict()}
+            else:
+                plugin_dict = {**plugin_dict, **plugin.to_dict()}
 
         return {**kernel_dict, **plugin_dict}
