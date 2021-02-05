@@ -12,4 +12,9 @@ CLI_SCHEMA = {
         "type": "string",
         "allowed": ["javamop"],
     },
+    "--input": {
+        "nullable": True,
+        "required": False,
+        "type": "string",
+    },
 }

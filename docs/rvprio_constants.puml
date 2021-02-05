@@ -8,8 +8,13 @@
 !$ValidatorTech = "Cerberus"
 !$ValidatorDef = "Validates that the commands that where passed to the CLI respect their schema."
 
+!$KernelLabel = "Javamop"
+!$KernelTech = "python"
+!$KernelDef = "Python class that handles javamop files and parses them to a data structure."
+
 !$UserToCli = "Uses"
 !$CliToValidator = "Uses"
+!$ValitatorToKernel = "Passes the input file for the kernel."
 
 !$InternalCall = "Calls"
 

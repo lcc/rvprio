@@ -4,13 +4,19 @@ Usage: rvprio [options]
 
   -h --help         Show this screen.
   -k --kernel=rv    Violations to look for [default: javamop]
+  -i --input=file   Input file.
 """
+import cerberus
 import docopt
 
+import rvprio.kernels.javamop
+import rvprio.validator
 
-def main(kernel):
+
+def main(kernel, input, **kwargs):
     """ Main function for rvprio. """
-    pass
+    kernel = rvprio.kernels.javamop.JavaMOP(input_file=input)
+    violations = kernel.get_violations()
 
 
 if __name__ == "__main__":
