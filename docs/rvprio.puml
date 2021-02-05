@@ -22,10 +22,12 @@ System_Boundary(Rvprio, $RvprioLabel) {
 	Container(Cli, $CliLabel, $CliTech, $CliDef)
 	Container(Validator, $ValidatorLabel, $ValidatorTech, $ValidatorDef)
 	Container(Kernel, $KernelLabel, $KernelTech, $KernelDef)
+	Container(Filesystem, $FilesystemLabel, $FilesystemTech, $FilesystemDef)
 }
 
 Rel(User, Cli, $UserToCli, $InternalCall)
 Rel(Cli, Validator, $CliToValidator, $InternalCall)
-Rel(Validator, Kernel, $ValidatorToKernel, $InternalCall)
+Rel(Cli, Kernel, $CliToKernel, $InternalCall)
+Rel(Cli, Filesystem, $CliToFilesystem, $InternalCall)
 
 @enduml

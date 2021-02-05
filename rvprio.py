@@ -9,6 +9,7 @@ Usage: rvprio [options]
 import cerberus
 import docopt
 
+import rvprio.filesystem
 import rvprio.kernels.javamop
 import rvprio.validator
 
@@ -17,6 +18,9 @@ def main(kernel, input, **kwargs):
     """ Main function for rvprio. """
     kernel = rvprio.kernels.javamop.JavaMOP(input_file=input)
     violations = kernel.get_violations()
+
+    filesystem = rvprio.filesystem.Filesystem(violations)
+    found_violations = filesystem.find_sources()
 
 
 if __name__ == "__main__":

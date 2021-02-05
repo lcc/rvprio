@@ -12,9 +12,14 @@
 !$KernelTech = "python"
 !$KernelDef = "Python class that handles javamop files and parses them to a data structure."
 
+!$FilesystemLabel = "Filesystem"
+!$FilesystemTech = "python"
+!$FilesystemDef = "Handles filesystem operation such as searching/copying files."
+
 !$UserToCli = "Uses"
 !$CliToValidator = "Uses"
-!$ValitatorToKernel = "Passes the input file for the kernel."
+!$CliToKernel = "Passes the input file for the kernel."
+!$CliToFilesystem = "Passes violatios to be copied/searched for."
 
 !$InternalCall = "Calls"
 
