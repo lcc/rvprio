@@ -19,8 +19,14 @@ venv:
 requirements:
 	$(PIP) install $(REQUIREMENTS)
 
-commit-hooks:
+commit-hooks: pre-commit \
+	commit-msg
+
+pre-commit:
 	$(PRE_COMMIT) install
+
+commit-msg:
+	ln -s -f ../../hooks/commit-msg.sh .git/hooks/commit-msg
 
 lint:
 	$(PYLINT) --verbose $(PYMODULE)
@@ -32,4 +38,5 @@ clean:
 
 clean-all: clean
 	@rm -r $(VENV)
+	@rm .git/hooks/pre-commit
 	@rm .git/hooks/pre-commit
