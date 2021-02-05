@@ -4,10 +4,13 @@ Usage: rvprio [options]
 
   -h --help         Show this screen.
   -k --kernel=rv    Violations to look for [default: javamop]
+  -p --project=prj  Name of the current project.
   -i --input=file   Input file.
+  -o --output=file  Output file.
 """
 import cerberus
 import docopt
+import pandas as pd
 
 import rvprio.filesystem
 import rvprio.kernels.javamop
@@ -17,9 +20,10 @@ import rvprio.validator
 
 
 RVPRIO_CACHE_FOLDER = ".rvprio"
+PROJECT_NAME = "Project Name"
 
 
-def main(kernel, input, **kwargs):
+def main(kernel, project, input, output, **kwargs):
     """ Main function for rvprio. """
     kernel = rvprio.kernels.javamop.JavaMOP(input_file=input)
     violations = kernel.get_violations()
@@ -53,6 +57,11 @@ def main(kernel, input, **kwargs):
             )
             final_violation.add_plugin_info(pmd_violation)
             final_violations.append(final_violation)
+
+    rvprio_violations = [violation.to_dict() for violation in final_violations]
+    df = pd.DataFrame(rvprio_violations).fillna(0)
+    df[PROJECT_NAME] = project
+    df.to_csv(output)
 
 
 if __name__ == "__main__":

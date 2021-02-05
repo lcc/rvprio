@@ -12,7 +12,17 @@ CLI_SCHEMA = {
         "type": "string",
         "allowed": ["javamop"],
     },
+    "--project": {
+        "nullable": False,
+        "required": True,
+        "type": "string",
+    },
     "--input": {
+        "nullable": False,
+        "required": True,
+        "type": "string",
+    },
+    "--output": {
         "nullable": False,
         "required": True,
         "type": "string",
