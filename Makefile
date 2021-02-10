@@ -12,6 +12,9 @@ PRE_COMMIT := $(BIN)/pre-commit
 PLANTUML_JAR_URL = https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
 PLANTUML = plantuml.jar
 
+run:
+	$(PYTHON) rvprio.py -i tests_struts.log -p struts -o struts.csv
+
 bootstrap: venv \
 	requirements \
 	commit-hooks
@@ -20,6 +23,7 @@ venv:
 	python3 -m venv $(VENV)
 
 requirements:
+	$(PIP) install --upgrade pip
 	$(PIP) install $(REQUIREMENTS)
 
 commit-hooks: pre-commit \

@@ -61,7 +61,7 @@ class PMDPlugin:
 
     def _run_pmd(self):
         file_list = ",".join(self._files)
-        pmd_command = f"~/pmd/bin/run.sh pmd -cache {self._cache_file} -R rulesets/internal/all-java.xml -d {file_list} -l java -f csv -r {self._out_file}"
+        pmd_command = f"pmd -cache {self._cache_file} -R rulesets/internal/all-java.xml -d {file_list} -l java -f csv -r {self._out_file}"
         process = subprocess.Popen(pmd_command, stdout=subprocess.PIPE, shell=True)
         process.communicate()
 
