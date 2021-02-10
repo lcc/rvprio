@@ -17,7 +17,8 @@ run:
 
 bootstrap: venv \
 	requirements \
-	commit-hooks
+	commit-hooks \
+	plugins
 
 venv:
 	python3 -m venv $(VENV)
@@ -26,8 +27,17 @@ requirements:
 	$(PIP) install --upgrade pip
 	$(PIP) install $(REQUIREMENTS)
 
+
 commit-hooks: pre-commit \
 	commit-msg
+
+plugins: pmd
+
+pmd:
+	wget https://github.com/pmd/pmd/releases/download/pmd_releases%2F6.31.0/pmd-bin-6.31.0.zip -O pmd.zip
+	unzip pmd.zip
+	mv pmd-bin-6.31.0 pmd
+	rm pmd.zip
 
 pre-commit:
 	$(PRE_COMMIT) install
