@@ -3,6 +3,7 @@
 
 docs/*.png
 plantuml.jar
+poetry.lock
 
 ### certificates ###
 *.pem
