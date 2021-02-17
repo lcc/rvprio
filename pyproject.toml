@@ -6,7 +6,7 @@ authors = ["Lucas Cabral <lucascostacabra@gmail.com>"]
 license = "GPLv2"
 
 [tool.poetry.scripts]
-rvprio = "rvprio:run"
+rvprio = "rvprio.cli:run"
 
 [tool.poetry.dependencies]
 python = "^3.9"

@@ -1,5 +1,5 @@
 """
-Runtime Verification Priorizator
+Runtime Verification Prioritizer
 Usage: rvprio [options]
 
   -h --help         Show this screen.
@@ -64,10 +64,13 @@ def main(kernel, project, input, output, **kwargs):
     df.to_csv(output)
 
 
-if __name__ == "__main__":
+def run():
     arguments = docopt.docopt(__doc__, version="beta")
     cli_validator = cerberus.Validator(rvprio.validator.CLI_SCHEMA)
     is_valid = cli_validator.validate(arguments)
     if is_valid:
         arguments = {k.strip("--"): v for (k, v) in arguments.items()}
         main(**arguments)
+
+    else:
+        print(cli_validator.errors)
