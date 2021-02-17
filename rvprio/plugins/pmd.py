@@ -1,6 +1,7 @@
 import collections
 import os.path
 import subprocess
+import pathlib
 
 import pandas
 
@@ -19,6 +20,7 @@ class PMDPlugin:
     _HEADER_RULE_LABEL = "Rule"
 
     def __init__(self, files, output_file, dst_dir):
+        self._dir = pathlib.Path(__file__).parent.absolute()
         self._output_file = os.path.join(dst_dir, output_file)
         self._cache_file = f"{dst_dir}/pmd.cache"
         self._out_file = f"{dst_dir}/{output_file}"
@@ -61,8 +63,8 @@ class PMDPlugin:
 
     def _run_pmd(self):
         file_list = ",".join(self._files)
-        print(file_list)
-        pmd_command = f"/home/mopuser/rvprio/pmd/bin/run.sh pmd -cache {self._cache_file} -R rulesets/internal/all-java.xml -d {file_list} -l java -f csv -r {self._out_file}"
+        pmd_dir = os.path.join(self._dir, "../pmd/bin/run.sh")
+        pmd_command = f"{pmd_dir} pmd -cache {self._cache_file} -R rulesets/internal/all-java.xml -d {file_list} -l java -f csv -r {self._out_file}"
         process = subprocess.Popen(pmd_command, stdout=subprocess.PIPE, shell=True)
         process.communicate()
 

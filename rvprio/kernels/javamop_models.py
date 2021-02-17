@@ -85,6 +85,8 @@ class JavaMOPViolation:
             "Specification": self._spec,
             "Severity": self._severity,
             "MethodName": self._method,
+            f"SPEC_IS_{self._spec}": 1,
+            f"SEVERITY_IS_{self._severity}": 1,
         }
 
     @property

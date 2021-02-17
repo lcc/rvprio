@@ -12,6 +12,8 @@ PRE_COMMIT := $(BIN)/pre-commit
 PLANTUML_JAR_URL = https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
 PLANTUML = plantuml.jar
 
+PMD := "rvprio/pmd"
+
 run:
 	$(PYTHON) rvprio.py -i tests_struts.log -p struts -o struts.csv
 
@@ -31,12 +33,12 @@ requirements:
 commit-hooks: pre-commit \
 	commit-msg
 
-plugins: pmd
+plugins: $(PMD)
 
-pmd:
+$(PMD):
 	wget https://github.com/pmd/pmd/releases/download/pmd_releases%2F6.31.0/pmd-bin-6.31.0.zip -O pmd.zip
 	unzip pmd.zip
-	mv pmd-bin-6.31.0 pmd
+	mv pmd-bin-6.31.0 rvprio/pmd
 	rm pmd.zip
 
 pre-commit:

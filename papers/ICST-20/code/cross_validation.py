@@ -1,7 +1,9 @@
 #!/usr/bin/python3.7
+import pickle
 import collections
 import operator
 import os
+import sklearn.utils.validation
 from pickle import dump, load
 
 import matplotlib.pyplot as plt
@@ -151,51 +153,63 @@ if __name__ == '__main__':
     ## CV
     predict_proba = cross_val_predict(clf, X, y, cv=n_repeats, method='predict_proba')
     y_pred = cross_val_predict(clf, X, y, cv=n_repeats)
-    ## Prioritization
-    prioritized, prio_b_srtd, prio_nb_srtd = prioritize_probBased_afterCV(predict_proba, y_pred)
-    ## Metrics
-    gbc_apbd = apbd_norm(prioritized, truebugs)
-    print("RVprio (classifier={})".format(clf_name))
-    print("(NORM)APBD: {}".format(gbc_apbd))
-    print("="*80)
-    print("Prioritized test suite: {}".format(prioritized))
-    print("="*80)
-    ## Plot
-    gbc_y_plot_list = get_y_plot_list(prioritized, truebugs, tb_map)
 
-    #================================================================================
-    # Optimal
-    #================================================================================
-    tb = set(prioritized).intersection(set(truebugs))
-    nb = set(prioritized).difference(set(truebugs))
-    prioritized = list(tb)+list(nb)
-    ## Metrics
-    optimal_reg_apbd = apbd(prioritized, truebugs)
-    optimal_apbd = apbd_norm(prioritized, truebugs)
-    ## Plot
-    optimal_y_plot_list = get_y_plot_list(prioritized, truebugs, tb_map)
+    print(x_cols)
 
-    #================================================================================
-    # Plot
-    #================================================================================
-    clf_label = r'\textsc{RVprio} prioritization'
-    clf_abbrev = r'\textsc{RVprio}'
-    x_list = range(1, len(prioritized)+1)
-    plt.style.use('ggplot')
-    plt.rcParams['xtick.color']='black'
-    plt.rcParams['ytick.color']='black'
-    plt.rcParams['axes.labelcolor']='black'
-    plt.rcParams['legend.fontsize']=12
-    plt.rc('text', usetex=True)
-    plt.rc('font', family='serif')
-    plt.figure(figsize=(8.0,4.1))
-    plt.plot(x_list, optimal_y_plot_list, color='blue', linestyle=':', linewidth=1.5, label='Optimal prioritization')
-    plt.plot(x_list, gbc_y_plot_list, color='green', linestyle='-', linewidth=1.75, label=clf_label)
-    plt.plot(x_list, random_y_plot_list, color='red', linestyle='--', linewidth=1.5, label='Random prioritization')
-    plt.text(800, 90, "nAPBD ({}): {}\%".format(clf_abbrev, int(gbc_apbd*100)), fontsize=14)
-    plt.text(800, 50, "nAPBD (Random): {}\%".format(int(rand_apbd*100)), fontsize=14)
-    plt.xlabel(r'\# of violations analyzed', fontsize=16)
-    plt.ylabel(r'\% of true bugs revealed', fontsize=16)    
-    plt.legend(loc="lower right")
-    plt.savefig(os.path.join(outdir, 'apbd_{}.pdf'.format(clf_name)), bbox_inches="tight", pad_inches=0)
-    plt.show()
+    for item in predict_proba:
+        print(item)
+
+
+    # clf.fit(X, y)
+    # with open('rvprio_clf.pkl', 'wb') as fid:
+    #     pickle.dump(clf, fid)
+
+    # sklearn.utils.validation.check_is_fitted(clf)
+    # ## Prioritization
+    # prioritized, prio_b_srtd, prio_nb_srtd = prioritize_probBased_afterCV(predict_proba, y_pred)
+    # ## Metrics
+    # gbc_apbd = apbd_norm(prioritized, truebugs)
+    # print("RVprio (classifier={})".format(clf_name))
+    # print("(NORM)APBD: {}".format(gbc_apbd))
+    # print("="*80)
+    # print("Prioritized test suite: {}".format(prioritized))
+    # print("="*80)
+    # ## Plot
+    # gbc_y_plot_list = get_y_plot_list(prioritized, truebugs, tb_map)
+
+    # #================================================================================
+    # # Optimal
+    # #================================================================================
+    # tb = set(prioritized).intersection(set(truebugs))
+    # nb = set(prioritized).difference(set(truebugs))
+    # prioritized = list(tb)+list(nb)
+    # ## Metrics
+    # optimal_reg_apbd = apbd(prioritized, truebugs)
+    # optimal_apbd = apbd_norm(prioritized, truebugs)
+    # ## Plot
+    # optimal_y_plot_list = get_y_plot_list(prioritized, truebugs, tb_map)
+
+    # #================================================================================
+    # # Plot
+    # #================================================================================
+    # # clf_label = r'\textsc{RVprio} prioritization'
+    # # clf_abbrev = r'\textsc{RVprio}'
+    # # x_list = range(1, len(prioritized)+1)
+    # # plt.style.use('ggplot')
+    # # plt.rcParams['xtick.color']='black'
+    # # plt.rcParams['ytick.color']='black'
+    # # plt.rcParams['axes.labelcolor']='black'
+    # # plt.rcParams['legend.fontsize']=12
+    # # plt.rc('text', usetex=True)
+    # # plt.rc('font', family='serif')
+    # # plt.figure(figsize=(8.0,4.1))
+    # # plt.plot(x_list, optimal_y_plot_list, color='blue', linestyle=':', linewidth=1.5, label='Optimal prioritization')
+    # # plt.plot(x_list, gbc_y_plot_list, color='green', linestyle='-', linewidth=1.75, label=clf_label)
+    # # plt.plot(x_list, random_y_plot_list, color='red', linestyle='--', linewidth=1.5, label='Random prioritization')
+    # # plt.text(800, 90, "nAPBD ({}): {}\%".format(clf_abbrev, int(gbc_apbd*100)), fontsize=14)
+    # # plt.text(800, 50, "nAPBD (Random): {}\%".format(int(rand_apbd*100)), fontsize=14)
+    # # plt.xlabel(r'\# of violations analyzed', fontsize=16)
+    # # plt.ylabel(r'\% of true bugs revealed', fontsize=16)
+    # # plt.legend(loc="lower right")
+    # # plt.savefig(os.path.join(outdir, 'apbd_{}.pdf'.format(clf_name)), bbox_inches="tight", pad_inches=0)
+    # # plt.show()

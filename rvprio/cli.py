@@ -11,6 +11,10 @@ Usage: rvprio [options]
 import cerberus
 import docopt
 import pandas as pd
+import pickle
+import pathlib
+import sklearn
+import operator
 
 import rvprio.filesystem
 import rvprio.kernels.javamop
@@ -22,6 +26,19 @@ import rvprio.validator
 RVPRIO_CACHE_FOLDER = ".rvprio"
 PROJECT_NAME = "Project Name"
 
+base_header = ["Project Name", "Specification", "Filename:Line number", "MethodName"]
+final_header = ['NLOC', 'CC', 'TOKEN', 'PARAM', 'AssignmentInOperand', 'BeanMembersShouldSerialize', 'CheckSkipResult', 'CloneMethodMustImplementCloneable', 'CloseResource', 'CompareObjectsWithEquals', 'DataflowAnomalyAnalysis', 'DetachedTestCase', 'DontImportSun', 'EmptyCatchBlock', 'EmptyIfStmt', 'EmptyWhileStmt', 'EqualsNull', 'IdempotentOperations', 'InstantiationToGetClass', 'InvalidSlf4jMessageFormat', 'JumbledIncrementer', 'MethodWithSameNameAsEnclosingClass', 'MisplacedNullCheck', 'MissingBreakInSwitch', 'MoreThanOneLogger', 'NonStaticInitializer', 'ProperCloneImplementation', 'SuspiciousHashcodeMethodName', 'SuspiciousOctalEscape', 'UnnecessaryCaseChange', 'UnnecessaryConversionTemporary', 'UnusedNullCheckInEquals', 'UseCorrectExceptionLogging', 'UseLocaleWithCaseConversions', 'SPEC_is_Iterator_HasNext', 'SPEC_is_ByteArrayOutputStream_FlushBeforeRetrieve', 'SPEC_is_Collections_SynchronizedCollection', 'SPEC_is_Collections_SynchronizedMap', 'SPEC_is_Closeable_MultipleClose', 'SPEC_is_Long_BadParsingArgs', 'SPEC_is_SortedSet_Comparable', 'SPEC_is_TreeSet_Comparable', 'SPEC_is_CharSequence_NotInMap', 'SPEC_is_InputStream_UnmarkedReset', 'SPEC_is_URLDecoder_DecodeUTF8', 'SPEC_is_Closeable_MeaninglessClose', 'SPEC_is_URLConnection_Connect', 'SPEC_is_Map_UnsafeIterator', 'SPEC_is_Iterator_RemoveOnce', 'SPEC_is_ListIterator_hasNextPrevious', 'SPEC_is_ListIterator_Set', 'SPEC_is_StringTokenizer_HasMoreElements', 'SPEC_is_Object_MonitorOwner', 'SPEC_is_Map_ItselfAsValue', 'SPEC_is_OutputStream_ManipulateAfterClose', 'SPEC_is_Socket_Timeout', 'SPEC_is_Socket_OutputStreamUnavailable', 'SPEC_is_HttpURLConnection_SetBeforeConnect', 'SPEC_is_Byte_BadParsingArgs', 'SPEC_is_Short_BadParsingArgs', 'SPEC_is_Reader_ManipulateAfterClose', 'SPEC_is_InputStream_ManipulateAfterClose', 'SPEC_is_CharSequence_UndefinedHashCode', 'SEVERITY_is_warning', 'SEVERITY_is_suggestion', 'SEVERITY_is_error']
+
+def get_nonbuggy_probabilities(predict_proba, indexes):
+    return [(i, predict_proba[i][0]) for i in indexes]
+
+
+def prioritize_probBased_afterCV(predict_proba, indexes):
+    prioritized = get_nonbuggy_probabilities(predict_proba, indexes)
+    prioritized.sort(key = operator.itemgetter(1))
+    prioritized = [i[0] for i in prioritized]
+
+    return prioritized
 
 def main(kernel, project, input, output, **kwargs):
     """ Main function for rvprio. """
@@ -61,8 +78,28 @@ def main(kernel, project, input, output, **kwargs):
     rvprio_violations = [violation.to_dict() for violation in final_violations]
     df = pd.DataFrame(rvprio_violations).fillna(0)
     df[PROJECT_NAME] = project
-    df.to_csv(output)
 
+    final_df = pd.DataFrame(columns=final_header)
+    final_df = pd.concat([df, final_df], axis=0, ignore_index=True).fillna(0)
+
+    final_df = final_df[final_header]
+
+    cli_path = pathlib.Path(__file__).parent.absolute()
+    with open(f'{cli_path}/rvprio_clf.pkl', 'rb') as fid:
+        prioritizer = pickle.load(fid)
+
+    x_cols = list(final_df.columns.values)
+
+    X = final_df[x_cols].values
+    y_pred = final_df.index.tolist()
+
+    predict_proba = prioritizer.predict_proba(X)
+    prioritized = prioritize_probBased_afterCV(predict_proba, y_pred)
+
+    print(prioritized)
+    df = df.reindex(prioritized)
+    df = df[base_header]
+    df.to_csv(output)
 
 def run():
     arguments = docopt.docopt(__doc__, version="beta")
