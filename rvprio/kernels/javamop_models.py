@@ -61,6 +61,7 @@ VIOLATION_SEVERITY_MAP = {
     "URLEncoder_EncodeUTF8": WARNING_LABEL,
     "ServerSocket_Timeout": WARNING_LABEL,
     "PipedStream_SingleThread": PLACEHOLDER_LABEL,
+    "List_UnsafeListIterator": PLACEHOLDER_LABEL,
 }
 
 
