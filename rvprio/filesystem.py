@@ -2,6 +2,7 @@
 
 import os
 import pathlib
+import shutil
 
 
 class Filesystem:
@@ -47,7 +48,7 @@ class Filesystem:
             full_path = violation.full_path
             dst = violation.get_file_subpath()
             dst = dst[: dst.rfind("/")]
-            rvprio.finder.copy_source(full_path, self._dst)
+            self._copy_source(full_path, dst)
 
     def find_file(self, subpath):
         source_files = list()
@@ -66,8 +67,8 @@ class Filesystem:
     def create_cache_dir(self):
         pathlib.Path(".rvprio").mkdir(parents=True, exist_ok=True)
 
-    def _copy_source(src, dst):
-        dst = os.path.join(SOURCES_DST, dst)
+    def _copy_source(self, src, dst):
+        dst = os.path.join(self._dst, dst)
         if not os.path.exists(dst):
             os.makedirs(dst)
 
