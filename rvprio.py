@@ -49,7 +49,6 @@ def main(kernel, project, input, output, **kwargs):
     filesystem.create_cache_dir()
     found_violations = filesystem.find_sources()
     filesystem.store_files()
-    return
 
     file_paths = [
         str(filesystem.find_file(subpath=violation.file_name)[0])
