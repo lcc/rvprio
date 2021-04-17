@@ -3,6 +3,7 @@
 WARNING_LABEL = "warning"
 SUGGESTION_LABEL = "suggestion"
 ERROR_LABEL = "error"
+PLACEHOLDER_LABEL = WARNING_LABEL
 
 VIOLATION_SEVERITY_MAP = {
     "ByteArrayOutputStream_FlushBeforeRetrieve": WARNING_LABEL,
@@ -58,6 +59,8 @@ VIOLATION_SEVERITY_MAP = {
     "Comparable_CompareToNullException": ERROR_LABEL,
     "InputStream_ReadAheadLimit": ERROR_LABEL,
     "URLEncoder_EncodeUTF8": WARNING_LABEL,
+    "ServerSocket_Timeout": WARNING_LABEL,
+    "PipedStream_SingleThread": PLACEHOLDER_LABEL,
 }
 
 
